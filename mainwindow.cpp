@@ -46,6 +46,7 @@ void MainWindow::playButton_clicked(){
         thread->start();
         firstExec = false;
     }
+    mtx.try_lock();
     mtx.unlock();
 }
 
@@ -59,6 +60,7 @@ void MainWindow::stopButton_clicked(){
 
     emit finished();
     firstExec = true;
+    mtx.try_lock();
     mtx.unlock();
 
     scene->clear();
